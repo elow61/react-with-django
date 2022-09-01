@@ -20,9 +20,10 @@ class App extends Component {
     }
 
     refreshList = () => {
-        axios.get('/api/todos/').then(
-            (res) => this.setState({todoList: res.data})
-        ).catch((err) => console.log(err))
+        axios
+            .get('/api/todos/')
+            .then((res) => this.setState({todoList: res.data}))
+            .catch((err) => console.log(err))
     }
 
     toggle = () => {
@@ -35,7 +36,7 @@ class App extends Component {
             axios.put(`/api/todos/${item.id}/`, item).then((res) => this.refreshList())
             return;
         }
-        axios.put('/api/todos/', item).then((res) => this.refreshList())
+        axios.post('/api/todos/', item).then((res) => this.refreshList())
     }
 
     handleDelete = (item) => {
